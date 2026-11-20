@@ -408,7 +408,7 @@ def run_streamlit_app():
 
         figures_dir = REPO_ROOT / "reports" / "figures"
         if not figures_dir.exists() or not any(figures_dir.glob("*.png")):
-            st.warning("Figures not found. Run `python scripts/generate_report_figures.py` to generate them.")
+            st.info("Evaluation charts are stored in reports/figures/.")
         else:
             col_f1, col_f2 = st.columns(2)
             with col_f1:

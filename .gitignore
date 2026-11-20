@@ -63,3 +63,8 @@ wandb/
 mlruns/
 temp/
 outputs/
+reports/
+
+# Local utility scripts and personal notes (kept locally, not tracked in git)
+scripts/
+PRESENTATION_GUIDE.md
