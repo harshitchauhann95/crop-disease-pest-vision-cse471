@@ -68,3 +68,5 @@ reports/
 # Local utility scripts and personal notes (kept locally, not tracked in git)
 scripts/
 PRESENTATION_GUIDE.md
+build_submission/
+*.zip
