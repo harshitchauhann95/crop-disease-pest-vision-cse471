@@ -17,16 +17,15 @@ ENV/
 env.bak/
 venv.bak/
 
-# Datasets and large binary files (fetch via scripts/download_datasets.py)
+# Large datasets and raw caches
 data/raw/
 data/processed/
-data/samples/
+data/samples/classification/field_plantdoc/
+data/samples/detection/
+data/samples/segmentation/
 data/*.zip
 data/*.tar.gz
 data/*.tar
-*.jpg
-*.jpeg
-*.png
 *.h5
 *.hdf5
 *.pkl
@@ -36,7 +35,6 @@ data/*.tar
 checkpoints/
 weights/
 runs/
-*.pt
 *.pth
 *.onnx
 *.engine
@@ -63,10 +61,24 @@ wandb/
 mlruns/
 temp/
 outputs/
-reports/
+# Submission unzipped folders and archives
+20_AgriVision_Crop_Diagnostic_System/
+58_AgriVision_Crop_Diagnostic_System/
+20_58_AgriVision_Crop_Diagnostic_System/
+build_submission/
+*.zip
+reports/*.pdf
+reports/*.docx
+reports/*.pptx
 
 # Local utility scripts and personal notes (kept locally, not tracked in git)
 scripts/
 PRESENTATION_GUIDE.md
-build_submission/
-*.zip
+
+# Whitelist production model weight and assets needed for cloud deployment
+!configs/crop_classifier.pt
+!reports/figures/
+!reports/figures/*.png
+!reports/lpu_logo.png
+!data/samples/classification/lab_plantvillage/
+!data/samples/classification/lab_plantvillage/**
