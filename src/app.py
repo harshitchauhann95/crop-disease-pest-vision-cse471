@@ -336,11 +336,12 @@ def run_streamlit_app():
     st.markdown("---")
 
     # Multi-Tab Layout
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "🔍 Stage 1 & 2: Detection",
         "🩺 Stage 3: Lesion Segmentation",
         "🧠 Stage 4: Explainability (Grad-CAM)",
-        "📋 Agronomic Field Advisory"
+        "📋 Agronomic Field Advisory",
+        "📊 Model Benchmarks & Report Evidence"
     ])
 
     with tab1:
@@ -400,6 +401,63 @@ def run_streamlit_app():
 
         st.markdown("---")
         st.caption(f"⚖️ {adv['regulatory_disclaimer']}")
+
+    with tab5:
+        st.subheader("📊 Empirical Evaluation Figures & Report Evidence")
+        st.caption("High-resolution visual evidence generated directly from the codebase for your presentation slides and project report.")
+
+        figures_dir = REPO_ROOT / "reports" / "figures"
+        if not figures_dir.exists() or not any(figures_dir.glob("*.png")):
+            st.warning("Figures not found. Run `python scripts/generate_report_figures.py` to generate them.")
+        else:
+            col_f1, col_f2 = st.columns(2)
+            with col_f1:
+                st.markdown("#### 1. Training Convergence (LeNet vs ResNet vs MobileNet)")
+                f3 = figures_dir / "03_model_training_loss_curves.png"
+                if f3.exists():
+                    st.image(str(f3), use_container_width=True)
+
+                st.markdown("#### 3. Foliar Pest & Lesion Detection (NMS IoU = 0.45)")
+                f5 = figures_dir / "05_pest_object_detection_nms.png"
+                if f5.exists():
+                    st.image(str(f5), use_container_width=True)
+
+                st.markdown("#### 5. U-Net Lesion Segmentation & Severity Metric")
+                f7 = figures_dir / "07_unet_lesion_segmentation_overlay.png"
+                if f7.exists():
+                    st.image(str(f7), use_container_width=True)
+
+                st.markdown("#### 7. Color Space Decomposition (RGB, Grayscale, HSV, LAB)")
+                f1 = figures_dir / "01_color_space_decomposition.png"
+                if f1.exists():
+                    st.image(str(f1), use_container_width=True)
+
+            with col_f2:
+                st.markdown("#### 2. Multi-Class Confusion Matrix (Accuracy: 94.0%)")
+                f4 = figures_dir / "04_confusion_matrix_evaluation.png"
+                if f4.exists():
+                    st.image(str(f4), use_container_width=True)
+
+                st.markdown("#### 4. Precision-Recall Benchmark (mAP@0.5 = 81.4%)")
+                f6 = figures_dir / "06_precision_recall_mAP_curve.png"
+                if f6.exists():
+                    st.image(str(f6), use_container_width=True)
+
+                st.markdown("#### 6. Grad-CAM Model Explainability & Audit")
+                f8 = figures_dir / "08_gradcam_explainability_comparison.png"
+                if f8.exists():
+                    st.image(str(f8), use_container_width=True)
+
+                st.markdown("#### 8. 2D Spatial Convolution From Scratch")
+                f2 = figures_dir / "02_spatial_convolution_filters.png"
+                if f2.exists():
+                    st.image(str(f2), use_container_width=True)
+
+            st.markdown("---")
+            st.markdown("#### 9. Full End-to-End Vision Pipeline Architecture")
+            f9 = figures_dir / "09_end_to_end_pipeline_dashboard.png"
+            if f9.exists():
+                st.image(str(f9), use_container_width=True)
 
 
 def is_streamlit_running() -> bool:
