@@ -1,0 +1,70 @@
+project:
+  name: "crop-disease-pest-vision-cse471"
+  version: "1.0.0"
+  course: "CSE471 - Deep Learning for Computer Vision"
+  problem_statement: "SIH26131 - Early Detection and Management of Crop Diseases and Pest Infestations"
+  author: "Harshit Chauhan"
+  academic_year: "Final Year B.Tech CSE"
+
+system:
+  device: "auto"  # auto, cuda, mps, or cpu
+  seed: 42
+  num_workers: 2
+
+data:
+  root_dir: "data"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  samples_dir: "data/samples"
+  
+  classification:
+    train_split: 0.8
+    val_split: 0.1
+    test_split: 0.1
+    image_size: [224, 224]
+    classes:
+      - "Tomato___Healthy"
+      - "Tomato___Early_Blight"
+      - "Tomato___Late_Blight"
+      - "Potato___Healthy"
+      - "Potato___Early_Blight"
+      - "Potato___Late_Blight"
+      - "Rice___Healthy"
+      - "Rice___Leaf_Blast"
+      - "Rice___Brown_Spot"
+      - "Apple___Healthy"
+      - "Apple___Apple_Scab"
+      - "Apple___Black_Rot"
+
+  detection:
+    image_size: [416, 416]
+    classes:
+      - "aphid"
+      - "armyworm"
+      - "whitefly"
+      - "leaf_miner"
+      - "blast_lesion"
+      - "blight_spot"
+    conf_threshold: 0.35
+    iou_threshold: 0.45
+
+  segmentation:
+    image_size: [256, 256]
+    in_channels: 3
+    num_classes: 1  # Binary lesion mask
+    threshold: 0.5
+    severity_bins:
+      mild: 0.10      # < 10% affected area
+      moderate: 0.30  # 10% - 30% affected area
+      severe: 1.00    # > 30% affected area
+
+training:
+  batch_size: 16
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  epochs: 15
+  early_stopping_patience: 5
+
+gradcam:
+  target_layer_cnn: "features.7"       # For MobileNet/VGG
+  target_layer_resnet: "layer4.1.conv2" # For ResNet18

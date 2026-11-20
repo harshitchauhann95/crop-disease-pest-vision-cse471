@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Datasets and large binary files (fetch via scripts/download_datasets.py)
+data/raw/
+data/processed/
+data/samples/
+data/*.zip
+data/*.tar.gz
+data/*.tar
+*.jpg
+*.jpeg
+*.png
+*.h5
+*.hdf5
+*.pkl
+*.parquet
+
+# Model weights, checkpoints and runs
+checkpoints/
+weights/
+runs/
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+
+# Operating System specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor configuration
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary outputs and logs
+logs/
+wandb/
+mlruns/
+temp/
+outputs/
